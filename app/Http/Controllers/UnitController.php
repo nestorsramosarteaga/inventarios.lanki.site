@@ -12,9 +12,11 @@ class UnitController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $units = Unit::all();
+        $per_page = $request->per_page;
+
+        $units = Unit::with('client')->paginate($per_page);
         return response()->json($units);
     }
 

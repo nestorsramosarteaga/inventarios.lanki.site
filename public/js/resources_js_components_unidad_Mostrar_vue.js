@@ -23,7 +23,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   name: "unidades",
   data: function data() {
     return {
-      unidades: []
+      unidades: [],
+      pagination: {
+        per_page: 100,
+        page: 1
+      }
     };
   },
   mounted: function mounted() {
@@ -39,7 +43,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return _this.axios.get('/v1/unidad').then(function (response) {
+                return _this.axios.get('/v1/unidad', {
+                  params: _this.pagination
+                }).then(function (response) {
                   console.log(response.data);
                   _this.unidades = response.data;
                 })["catch"](function (error) {
@@ -84,10 +90,10 @@ var render = function render() {
     staticClass: "table-responsive"
   }, [_c("table", {
     staticClass: "table table-bordered"
-  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.unidades, function (unidad) {
+  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.unidades.data, function (unidad) {
     return _c("tr", {
       key: unidad.id
-    }, [_c("td", [_vm._v(_vm._s(unidad.id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(unidad.codigo))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(unidad.tipo_ua))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(unidad.marca))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(unidad.procesador))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(unidad.client_id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(unidad.generacion))])]);
+    }, [_c("td", [_vm._v(_vm._s(unidad.id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(unidad.codigo))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(unidad.tipo_ua))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(unidad.marca))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(unidad.procesador))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(unidad.client.empresa))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(unidad.generacion))])]);
   }), 0)])])])])]);
 };
 
