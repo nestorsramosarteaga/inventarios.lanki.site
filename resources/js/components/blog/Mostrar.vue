@@ -1,11 +1,6 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 mb-4">
-                <router-link :to='{name:"crearBlog"}' class="btn btn-success">
-                    <i class="fas fa-plus-circle"></i>
-                </router-link>
-            </div>
             <div class="col-12">
                 <div class="table-responsive">
                     <table class="table table-bordered">
