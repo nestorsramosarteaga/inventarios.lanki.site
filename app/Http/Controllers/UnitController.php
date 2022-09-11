@@ -14,9 +14,16 @@ class UnitController extends Controller
      */
     public function index(Request $request)
     {
-        $per_page = $request->per_page;
+        $filtro = $request->filtro;
 
-        $units = Unit::with('client')->paginate($per_page);
+        $units = Unit::with('client')->get();
+        $units = $units->filter(function($unit) use ($filtro){
+            if ($filtro === null) return true;
+
+            //return strpos(strtolower($unit->client->empresa), strtolower($filtro)) !== false;
+            return strtolower($unit->client->empresa) === strtolower($filtro);
+        });
+
         return response()->json($units);
     }
 

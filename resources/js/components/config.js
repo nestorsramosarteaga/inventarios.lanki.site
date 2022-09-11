@@ -1,3 +1,3 @@
 export default {
-    apiUrl: 'http://inventarios.lanki.site/api'
+    apiUrl: 'http://localhost:8000/api'
 }

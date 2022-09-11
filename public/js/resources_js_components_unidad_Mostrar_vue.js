@@ -24,9 +24,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   data: function data() {
     return {
       unidades: [],
-      pagination: {
-        per_page: 100,
-        page: 1
+      params: {
+        filtro: null
       }
     };
   },
@@ -44,10 +43,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.next = 2;
                 return _this.axios.get('/v1/unidad', {
-                  params: _this.pagination
+                  params: _this.params
                 }).then(function (response) {
-                  console.log(response.data);
-                  _this.unidades = response.data;
+                  _this.unidades = response;
                 })["catch"](function (error) {
                   _this.unidades = [];
                 });
@@ -83,6 +81,44 @@ var render = function render() {
   return _c("div", {
     staticClass: "container"
   }, [_c("div", {
+    staticClass: "row mb-2"
+  }, [_c("form", {
+    staticClass: "d-flex",
+    on: {
+      submit: function submit($event) {
+        $event.preventDefault();
+        return _vm.mostrarUnidades.apply(null, arguments);
+      }
+    }
+  }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.params.filtro,
+      expression: "params.filtro"
+    }],
+    staticClass: "form-control me-2",
+    attrs: {
+      type: "search",
+      placeholder: "Filtrar por nombre de empresa",
+      "aria-label": "Search"
+    },
+    domProps: {
+      value: _vm.params.filtro
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+
+        _vm.$set(_vm.params, "filtro", $event.target.value);
+      }
+    }
+  }), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      type: "submit"
+    }
+  }, [_vm._v("Buscar")])])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-12"

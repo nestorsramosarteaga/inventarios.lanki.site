@@ -2074,7 +2074,7 @@ var render = function render() {
     staticClass: "navbar navbar-expand-lg navbar-dark bg-dark"
   }, [_c("div", {
     staticClass: "container-fluid"
-  }, [_vm._m(0), _vm._v(" "), _c("div", {
+  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c("div", {
     staticClass: "collapse navbar-collapse",
     attrs: {
       id: "navbarSupportedContent"
@@ -2090,7 +2090,7 @@ var render = function render() {
       to: "/",
       "aria-current": "page"
     }
-  }, [_vm._v("\n                        Inicio\n                    ")])], 1), _vm._v(" "), _c("li", {
+  }, [_vm._v("\n                            Inicio\n                        ")])], 1), _vm._v(" "), _c("li", {
     staticClass: "nav-item dropdown"
   }, [_c("router-link", {
     staticClass: "nav-link",
@@ -2098,7 +2098,7 @@ var render = function render() {
       "exact-active-class": "active",
       to: "/unidades"
     }
-  }, [_vm._v("\n                        Unidades\n                    ")])], 1)]), _vm._v(" "), _vm._m(1)])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            Unidades\n                        ")])], 1)])])])]), _vm._v(" "), _c("div", {
     staticClass: "pt-3"
   }, [_c("router-view")], 1)]);
 };
@@ -2124,21 +2124,19 @@ var staticRenderFns = [function () {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("form", {
-    staticClass: "d-flex"
-  }, [_c("input", {
-    staticClass: "form-control me-2",
+  return _c("button", {
+    staticClass: "navbar-toggler",
     attrs: {
-      type: "search",
-      placeholder: "Search",
-      "aria-label": "Search"
+      type: "button",
+      "data-bs-toggle": "collapse",
+      "data-bs-target": "#navbarSupportedContent",
+      "aria-controls": "navbarSupportedContent",
+      "aria-expanded": "false",
+      "aria-label": "Toggle navigation"
     }
-  }), _vm._v(" "), _c("button", {
-    staticClass: "btn btn-outline-success",
-    attrs: {
-      type: "submit"
-    }
-  }, [_vm._v("Search")])]);
+  }, [_c("span", {
+    staticClass: "navbar-toggler-icon"
+  })]);
 }];
 render._withStripped = true;
 
@@ -2235,7 +2233,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  apiUrl: 'http://inventarios.lanki.site/api'
+  apiUrl: 'http://localhost:8000/api'
 });
 
 /***/ }),

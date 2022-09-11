@@ -1,5 +1,16 @@
 <template>
     <div class="container">
+        <div class="row mb-2">
+            <form @submit.prevent="mostrarUnidades" class="d-flex" >
+                <input 
+                    class="form-control me-2" 
+                    type="search" 
+                    v-model="params.filtro" 
+                    placeholder="Filtrar por nombre de empresa" 
+                    aria-label="Search">
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </form>
+        </div>
         <div class="row">
             <div class="col-12">
                 <div class="table-responsive">
@@ -27,36 +38,8 @@
                             </tr>
                         </tbody>
                     </table>
-                    <!-- <div class="row">
-                        
-                        <div class="col-4 md-4"></div>
-                        <div class="col-2 md-2"></div>
-                        <div class="col-6 md-6">
-                            <nav>
-                                <ul class="pagination">
-                                    <li class="page-item" :class="{disabled:pagination.page==1}">
-                                        <a href="#" class="page-link" @click="pagination.page=1; listar();">&lt;</a>
-                                    </li>
-                                    <li class="page-item" :class="{disabled:pagination.page==1}">
-                                        <a href="#" class="page-link" @click="pagination.page=1; listar();">&gt;</a>
-                                    </li>
-                                    <li class="page-item" :class="{disabled:pagination.page==1}">
-                                        <a href="#" class="page-link" @click="pagination.page++; listar();">&laquo;</a>
-                                    </li>
-                                    <li class="page-item" :class="{disabled:pagination.page==unidades.last_page}">
-                                        <a href="#" class="page-link" @click="pagination.page=unidades.last_page; listar();">&raquo;</a>
-                                    </li>
-                                    <li class="page-item" :class="{disabled:pagination.page==unidades.last_page}">
-                                        <a href="#" class="page-link" @click="pagination.page--; listar();">1</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </div> -->
+                    
                 </div>
-                <!-- <div class="table-responsive">
-                    <table class="table table-bordered table-responsive"></table>
-                </div> -->
             </div>
         </div>
     </div>
@@ -68,10 +51,9 @@ export default {
     data(){
         return{
             unidades: [],
-            pagination:{
-                per_page: 100,
-                page: 1
-            }
+            params:{
+                filtro: null
+            },
         }
     },
     mounted(){
@@ -79,10 +61,9 @@ export default {
     },
     methods:{
         async mostrarUnidades(){
-            await this.axios.get('/v1/unidad',{params: this.pagination})
+            await this.axios.get('/v1/unidad',{params: this.params})
                 .then( response=>{
-                    console.log(response.data)
-                    this.unidades = response.data
+                    this.unidades = response
                 })
                 .catch( error => {
                     this.unidades = []
